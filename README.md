@@ -13,7 +13,7 @@ The ButtonClickListener library provides an object-oriented approach to handle b
 ```cpp
 #include <ButtonClickListener.h>
 
-Button button1(BUTTON_PIN_1); // Pass the pin value when creating object of such type
+Button button1(c); // Pass the pin value when creating object of such type
 Button button2(BUTTON_PIN_2); // Replace BUTTON_PIN_1 and BUTTON_PIN_2 with the actual pin numbers to which your buttons are connected.
 ```
 ### Attaching Callback Functions
@@ -41,6 +41,22 @@ void loop() {
   // Other code in your loop
 }
 ```
+It is even better if you push the buttons into a vector on your loop check the state of each button as follows:
+
+```cpp
+std::vector<Button> buttons;     // this way we can loop through our vector of buttons
+buttons.push_back(Button(pin1)); // our first button
+buttons.push_back(Button(pin2)); // our second button and so on..
+
+void loop() {
+  for (auto& button : buttons) {
+    button.checkState(); // check the state of buttons to detect any onclick
+  }
+
+  // Other code in your loop
+}
+```
+
 Make sure to replace comments with your existing code or any additional logic you need to run.
 
 ## Example
