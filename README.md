@@ -41,16 +41,21 @@ void loop() {
   // Other code in your loop
 }
 ```
-It is even better if you push the buttons into a vector on your loop check the state of each button as follows:
+
+### Looping through a vector of your buttons for checking state
+
+It is even better to loop through a ***vector*** of your buttons. But Arduino does not contain standard support for vectors, therefore you are encouraged to use another [library of mine](https://github.com/NuclearAbscission/Vector-library-for-Arduino)
 
 ```cpp
-std::vector<Button> buttons;     // this way we can loop through our vector of buttons
+Vector<Button> buttons;     // this way we can loop through our vector of buttons
 buttons.push_back(Button(pin1)); // our first button
 buttons.push_back(Button(pin2)); // our second button and so on..
 
 void loop() {
-  for (auto& button : buttons) {
-    button.checkState(); // check the state of buttons to detect any onclick
+  for (int i = 0; i < buttons.size(); ++i) {
+    auto& x = buttons[i];
+
+    x.checkState();
   }
 
   // Other code in your loop
